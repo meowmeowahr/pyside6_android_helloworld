@@ -17,7 +17,7 @@ Other and/or older devices are not covered in this guide, as they require manual
 
 ## Build Guide
 
->>> [!IMPORTANT]
+> [!IMPORTANT]
 Ensure that all of the above requirements are met.
 Even minor version differences will cause issues during the build.
 
@@ -55,7 +55,7 @@ If the command succeeds, the built APK should end up in `dist/`
 
 The `buildozer.spec` file contains all of the configurations for Buildozer.
 
->>> [!WARNING]
+> [!WARNING]
 All requirements must be defined under `app.requirements`, otherwise, they will not be included in the APK.
 An import error will result in the app crashing on launch.
 
