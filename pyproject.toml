@@ -1,0 +1,20 @@
+[project]
+name = "pyside6-android-helloworld"
+version = "0.1.0"
+description = "Example of a PySide6 app built for Android"
+readme = "README.md"
+requires-python = ">=3.10,<3.12" # buildozer requirement
+dependencies = [
+    "pyside6-essentials>=6.9.1",
+]
+
+[project.optional-dependencies]
+build = [
+    "buildozer==1.5.0",
+    "requests>=2.32.4",
+    "tqdm>=4.67.1",
+    "packaging>=25.0",
+    "pip>=25.1.1",
+    "jinja2>=3.1.6",
+    "cython"
+]
