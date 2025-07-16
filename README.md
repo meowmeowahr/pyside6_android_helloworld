@@ -7,9 +7,9 @@ This example uses a custom deployment script instead of `pyside6-android-deploy`
 ## Requirements
 
 * Linux (macOS might be compatible, Windows will not work)
-* Python 3.11 (fixed version requirement by Buildozer)
+* Python **3.11** (fixed version requirement by Buildozer)
 * PySide6 **6.9.1** (other versions may be compatible, requires script modifications)
-* OpenJDK 17
+* OpenJDK **17**
 * uv and dependencies defined in `pyproject.toml`
 
 Additionally, this guide only covers building for **ARM64-v8 devices**.
@@ -60,3 +60,34 @@ All requirements must be defined under `app.requirements`, otherwise, they will 
 An import error will result in the app crashing on launch.
 
 All options for iOS and/or Kivy are not relevant to this guide.
+
+## Updating PySide
+
+This build system is compatible with all PySide6 versions from 6.8.0 up.
+
+1. Edit the `QT_VERSION` constant in `configure.py`
+2. Delete the `deployment` and `.qt` directory to removed cached data
+3. Re-run `configure.py` and rebuild
+
+## Enabling additional Qt modules
+
+The default pre-enabled Qt modules are `Core`, `Widgets`, and `Gui`.
+
+Modules names are the imported name without the `Qt` prefix. Ex: using `QtCharts`  will require adding the `Charts` module.
+
+Enabling an additional module will require updating the `configure.py` list constant, `QT_MODULES`. Note that `Core`, `Widgets`, and `Gui` are required in most cases.
+
+Then, delete the `deployment` directory, re-run `configure.py` and rebuild.
+
+## Adding Python Dependencies
+
+Update the `app.requirements` field in `buildozer.spec`.
+
+If you are using uv, you can run `uv tree` to view all direct and transient dependencies.
+Note that including transient requirements is required.
+
+> [!NOTE]
+`python3,shiboken6,PySide6` are required.
+
+> [!WARNING]
+`typing_extensions` is not included by default
